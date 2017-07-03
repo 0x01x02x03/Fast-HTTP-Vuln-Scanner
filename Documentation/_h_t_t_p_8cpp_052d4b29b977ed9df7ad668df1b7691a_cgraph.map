@@ -1,0 +1,4 @@
+<area shape="rect" href="$_h_t_t_p_core_8cpp.html#6dbeec146e0ad13bf74132d33c7cecf8" title="This function deallocates the memory of an an HTTP_DATA struct." alt="" coords="215,5,321,32">
+<area shape="rect" href="$_h_t_t_p_8cpp.html#b00ee47bf2eef8ce45ed40a9fc9904d0" title="This function is used to get a header returned by the HTTP server by using the header..." alt="" coords="391,106,505,133">
+<area shape="rect" href="$_h_t_t_p_8cpp.html#12b839d57c43cf562c91a6342b68727d" title="This function search for the &quot;Server:&quot; Header at a server response." alt="" coords="207,106,329,133">
+<area shape="rect" href="$_h_t_t_p_8cpp.html#4622d413bcf1164f3364db8f9cda7315" title="This function enumerates all valid authentication schemes supported by the remote..." alt="" coords="196,157,340,184">

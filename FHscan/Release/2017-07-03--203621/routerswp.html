@@ -1,0 +1,232 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+ <meta name="AUTHOR" content="Andrés Tarascó Acu&ntilde;a"/>
+ <title>FHScan - Fast HTTP Vulnerability Scanner v1.1 Report</title>
+<style>
+body
+{
+	font: 16px arial, sans-serif;
+}
+
+pre
+{
+	text-indent: 30px;
+}
+
+#parameters
+{
+	text-align: center;
+	vertical-align: middle;
+	width: 200px;
+	margin: 20px 20px 20px 20px;
+}
+
+#parameters td
+{
+	font: 0.7em "Trebuchet MS" , Arial, sans-serif;
+}
+
+#parameters td.field
+{
+	background: #6699CC;
+	text-align: left;
+	text-indent: 5px;
+	font-weight: bold;
+}
+#parameters td.input
+{
+	text-align: center;
+	border-width: 1px;
+	border-style: dashed;
+}
+#parameters td.inputstrike
+{
+	text-align: center;
+	text-decoration: line-through;
+	border-width: 1px;
+	border-style: dashed;
+}
+
+#conj_res
+{
+	width: 1000px;
+}
+
+#foo
+{
+	position: absolute;
+	left: 500px; /* top: 40px; */
+	background-color: #f1f1f1;
+	width: 400px;
+	padding: 5px;
+	color: black;
+	border: #0000cc 2px dashed;
+	display: none;
+}
+
+.hideme
+{
+	visibility: hidden;
+	position: absolute;
+	left: -1000px;
+}
+
+
+#tabmenu
+{
+	color: #000;
+	z-index: 1;
+	padding-left: 5px;
+	text-align: left;
+	width: 939px;
+}
+
+#tabmenu li
+{
+	display: inline;
+	overflow: hidden;
+	list-style-type: none;
+}
+
+#tabmenu a, a.active
+{
+	color: #DEDECF;
+	background: #6699CC;
+	font: bold 0.7em "Trebuchet MS" , Arial, sans-serif;
+	border: 2px solid black;
+	padding: 2px 5px 0px 5px;
+	margin: 0;
+	text-decoration: none;
+}
+
+#tabmenu a.active
+{
+	background: #fc8703;
+	border-bottom: #e6ecf2;
+}
+
+#tabmenu a:hover
+{
+	color: #fff;
+	background: #ADC09F;
+}
+
+#tabmenu a:visited
+{
+	color: #E8E9BE;
+}
+
+#tabmenu a.active:hover
+{
+	background: #ABAD85;
+	color: #E8E9BE;
+}
+
+#content
+{
+	font: 0.7em "bitstream vera sans" , verdana, sans-serif;
+	text-align: justify;
+	background: #e6ecf2;
+	padding: 20px;
+	border: 2px solid black;
+	z-index: 2;
+	width: 960px;
+}
+
+#content a
+{
+	text-decoration: none;
+	color: #E8E9BE;
+}
+
+#content a:hover
+{
+	background: #898B5E;
+}
+
+#content td
+{
+	text-align: center;
+	border-width: 1px;
+	border-style: dashed;
+	background-color: #FFFFFF;
+}
+#content td.field
+{
+	background: #6699CC;
+	text-indent: 5px;
+	font-weight: bold;
+	border: hidden;
+}
+
+</style>
+</head>
+
+
+<body>
+<script type="text/javascript" src="../css/scripts.js"></script>
+
+
+<div id="foo" onmousedown="grab(this)"><a href="http://www.tarasco.org/security">Tarasco</a></div>
+<table width="960" border="0">
+ <tr> 
+ <td align="center"><b>.:: Fast HTTP Vulnerability Scanner v1.1 Report ::.</b></td>
+ </tr>
+</table>
+
+<div id="parameters">
+<table width="900" border="0">
+  <tr>
+    <td class="field" width="100">hosts from file</td>
+    <td class="input" colspan="3"><font color="#5588FF"> 95.17.0.0 - 95.17.255.255</font></td>
+  </tr>
+  <tr>
+    <td class="field" width="100">Scan date</td>
+    <td class="input" colspan="3">7/3/2017 - 20:36 </td>
+  </tr>
+  <tr>
+    <td class="field" width="100">ports</td>
+    <td class="input" colspan="3">HTTP 80</td>
+  </tr>
+  <tr>
+    <td class="field" width="100">threads</td>
+    <td class="input" colspan="3">64</td>
+  </tr>
+  <tr>
+    <td class="field" width="100">additional</td>
+    <td width="140" class="input" >BruteForce </td>
+    <td width="109" class="input" >Full Users list </td>
+    <td width="136" class="input" >Vulnerability Checks </td>
+  </tr>
+</table>
+</div>
+
+<div id="conj_res">
+ <div id="tabmenu">
+ <ul>
+  <li><a href="index.html">Open ports</a></li>
+  <li><a href="devices.html">Devices</a></li>
+  <li><a href="webservers.html">webservers</a></li>
+  <li><a class="active" href="routerswp.html">Routers with password</a></li>
+  <li><a href="routersup.html">routers with unknown password</a></li>
+  <li><a href="routersnp.html">routers without password</a></li>
+  <li><a href="bruteforce.html">Web vulnerabilities</a></li>
+
+ </ul>
+ </div> 
+ <div id="content">
+  <table align="center" width="950" border="0">
+   <tr>
+    <td width="100" height="20" class="field">host</td>
+    <td width="40" class="field">port</td>
+    <td width="90" class="field">status code </td>
+    <td width="150" class="field">HTML Title </td>
+    <td class="field">user</td>
+    <td class="field">password</td>
+    <td class="field">path</td>
+    <td class="field">banner</td>
+
+   </tr>

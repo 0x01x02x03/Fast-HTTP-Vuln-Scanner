@@ -1,0 +1,9 @@
+<area shape="rect" href="$_h_t_t_p_core_8cpp.html#7e4dfcd1ce2182ec1e1bd21597861072" title="This function is the method for adding a new pending HTTP Request to the connection..." alt="" coords="263,5,404,32">
+<area shape="rect" href="$_h_t_t_p_core_8cpp.html#310a818ceb8d6890e59a7a46437cdc45" title="This function is used to clean the status of a connection struct when the conexion..." alt="" coords="277,56,389,82">
+<area shape="rect" href="$_io_functions_8cpp.html#c5dc941f0db31e40b9c43fa6b07214c6" title="This function stablishes a connection against a remote host." alt="" coords="528,106,661,133">
+<area shape="rect" href="$_h_t_t_p_core_8cpp.html#505dd4f6d7af3a2463ce1702c247d24a" title="This function checks the connection table searching for a free and inactive connection..." alt="" coords="217,157,449,184">
+<area shape="rect" href="$_h_t_t_p_core_8cpp.html#8be38410de4fccba4b89dbb6b19dddc1" title="This function checks the connection table searching for the first unused connection..." alt="" coords="204,208,463,234">
+<area shape="rect" href="$_threading_8cpp.html#446677ae8d0d0473635ed910af1f7f25" title="This function locks a mutex/critical Section object initialized by InitMutex()." alt="" coords="291,258,376,285">
+<area shape="rect" href="$_threading_8cpp.html#a1db935fa6b7186629053cd0a2a90dc5" title="This function unlocks a mutex/critical Section object." alt="" coords="283,309,384,336">
+<area shape="rect" href="$_h_t_t_p_core_8cpp.html#c7a53a7fe6480eed1d9ff971b48eae50" title="This function Adds a pending request struct to the connection pool." alt="" coords="512,5,677,32">
+<area shape="rect" href="$_io_functions_8cpp.html#5bfb206cc97835337979f0d30b2a891a" title="This function sends an HTTP request to the remote webserver. a CONEXION struct with..." alt="" coords="516,56,673,82">

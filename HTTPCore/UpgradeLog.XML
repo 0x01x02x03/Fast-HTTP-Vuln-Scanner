@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="HTTPCore">
+</Property><Property Name="Archivo de la solución" Value="C:\Web\FHScan_Fast_HTTP_Vulnerability_Scanner\FSCAN_PROJECT\FSCAN_PROJECT\HTTPCore\HTTPCore.sln">
+</Property><Property Name="Archivo de opciones de usuario" Value="C:\Web\FHScan_Fast_HTTP_Vulnerability_Scanner\FSCAN_PROJECT\FSCAN_PROJECT\HTTPCore\HTTPCore.suo">
+</Property><Property Name="Date" Value="domingo, 18 de enero de 2009">
+</Property><Property Name="Time" Value="16:36">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="HTTPCore.sln" Description="La copia C:\Web\FHScan_Fast_HTTP_Vulnerability_Scanner\FSCAN_PROJECT\FSCAN_PROJECT\HTTPCore\HTTPCore.sln.old del archivo se ha realizado correctamente">
+</Event><Event ErrorLevel="0" Project="" Source="HTTPCore.suo" Description="La copia C:\Web\FHScan_Fast_HTTP_Vulnerability_Scanner\FSCAN_PROJECT\FSCAN_PROJECT\HTTPCore\HTTPCore.suo.old del archivo se ha realizado correctamente">
+</Event><Event ErrorLevel="1" Project="HTTPCore" Source="HTTPCore.vcproj" Description="Esta aplicación se ha actualizado para incluir la configuración relacionada con la característica Control de cuentas de usuario (UAC) de Windows Vista. De manera predeterminada, cuando se ejecuta en Windows Vista con el Control de cuentas de usuario habilitado, la aplicación está marcada para que se ejecute con los mismos privilegios que el proceso que la inició y para que no pueda ejecutarse con virtualización. Puede cambiar la configuración relativa al Control de cuentas de usuario desde las páginas de propiedades del proyecto.">
+</Event><Event ErrorLevel="0" Project="HTTPCore" Source="HTTPCore.vcproj" Description="Se realizó correctamente la copia de seguridad del archivo de proyecto 'C:\Web\FHScan_Fast_HTTP_Vulnerability_Scanner\FSCAN_PROJECT\FSCAN_PROJECT\HTTPCore\HTTPCore.vcproj.8.00.old'.">
+</Event><Event ErrorLevel="0" Project="HTTPCore" Source="HTTPCore.vcproj" Description="Proyecto actualizado correctamente.">
+</Event><Event ErrorLevel="3" Project="HTTPCore" Source="HTTPCore.vcproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="HTTPCore.sln" Description="La solución se convirtió correctamente">
+</Event><Event ErrorLevel="3" Project="" Source="HTTPCore.sln" Description="Converted">
+</Event></UpgradeLog>

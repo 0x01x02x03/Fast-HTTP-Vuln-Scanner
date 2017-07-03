@@ -1,0 +1,17 @@
+[FHSCAN_DATA]
+FHSCAN_MAYOR_VERSION= 1
+FHSCAN_MINOR_VERSION= 1
+FHSCAN_BUILD_VERSION= 23
+FHSCAN_SIGNATUREFILE= 103
+
+[FHSCAN_UPDATE]
+FHSCAN_UPDATE_SERVER= www.tarasco.org
+FHSCAN_UPDATE_PORT__= 80
+FHSCAN_PROTOCOL_PORT= 0
+FHSCAN_CHECK_VERSION= /security/FHScan_Fast_HTTP_Vulnerability_Scanner/FHSCAN_release.dat
+FHSCAN_DWNLD_PACKAGE= /security/FHScan_Fast_HTTP_Vulnerability_Scanner/FHSCAN_complete.zip
+FSCAN_DOWNLOAD_LINUX= /security/FHScan_Fast_HTTP_Vulnerability_Scanner/fhscan-1.1.20-i386-backtrack3.tar.gz
+FHSCAN_SIGNATUREFILE= /security/FHScan_Fast_HTTP_Vulnerability_Scanner/FHSCAN_signatures.zip
+
+FSCAN_UPDATE_NEWS___= Fixed some mayor bugs when handling updates (if you have a version <=1.1.19 update manually). Fixed digest authentication and a high cpu usage bug under 1.1.18 - 1.1.20. 
+

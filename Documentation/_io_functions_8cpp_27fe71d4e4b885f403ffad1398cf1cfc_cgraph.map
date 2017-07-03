@@ -1,0 +1,11 @@
+<area shape="rect" href="$_h_t_t_p_core_8cpp.html#310a818ceb8d6890e59a7a46437cdc45" title="This function is used to clean the status of a connection struct when the conexion..." alt="" coords="227,94,339,120">
+<area shape="rect" href="$_h_t_t_p_core_8cpp.html#c7a53a7fe6480eed1d9ff971b48eae50" title="This function Adds a pending request struct to the connection pool." alt="" coords="392,6,557,32">
+<area shape="rect" href="$_io_functions_8cpp.html#5bfb206cc97835337979f0d30b2a891a" title="This function sends an HTTP request to the remote webserver. a CONEXION struct with..." alt="" coords="396,82,553,108">
+<area shape="rect" href="$_io_functions_8cpp.html#c5dc941f0db31e40b9c43fa6b07214c6" title="This function stablishes a connection against a remote host." alt="" coords="408,132,541,159">
+<area shape="rect" href="$_io_functions_8cpp.html#a668db7485369eaad473a0c9dcff7f89" title="GetFileMapping" alt="" coords="227,195,339,222">
+<area shape="rect" href="$_h_t_t_p_8cpp.html#b00ee47bf2eef8ce45ed40a9fc9904d0" title="This function is used to get a header returned by the HTTP server by using the header..." alt="" coords="225,246,340,272">
+<area shape="rect" href="$_io_functions_8cpp.html#26f9c32885f0b2a36a40feb0d90b9864" title="gettimeofday" alt="" coords="235,296,331,323">
+<area shape="rect" href="$_h_t_t_p_core_8cpp.html#da3419073817e6c8b87a8d9e19290b3e" title="This function Initializes an HTTP_DATA struct with the headers and and data sent..." alt="" coords="235,347,331,374">
+<area shape="rect" href="$_io_functions_8cpp.html#65805fa0e018b49866740838acc4655d" title="This function checks if the transfered data exceeds the current bandwidth limit." alt="" coords="221,398,344,424">
+<area shape="rect" href="$_threading_8cpp.html#446677ae8d0d0473635ed910af1f7f25" title="This function locks a mutex/critical Section object initialized by InitMutex()." alt="" coords="240,448,325,475">
+<area shape="rect" href="$_threading_8cpp.html#a1db935fa6b7186629053cd0a2a90dc5" title="This function unlocks a mutex/critical Section object." alt="" coords="232,499,333,526">

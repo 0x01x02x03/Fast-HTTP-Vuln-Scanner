@@ -1,0 +1,15 @@
+Fast HTTP Auth Scanner FAQ:
+---------------------------
+
+
+Q: Where can i download the source code of Fscan?
+A: Lastest Fscan source code is available at http://www.tarasco.org
+
+Q: I have found that Fscan is not detecting device
+A: add it yourself :p or report me that information
+
+Q: I have found a bug in the application. what should i do?
+A: Your best option is to report it to atarasco@gmail.com
+
+Q: A device is not detected. What should i do?
+A: If you are able to generate a valid signature for that device/webserver, just send me the signatures, if not, please try to provide me a remote host/port or pcap capture file.
