@@ -1,0 +1,301 @@
+FHSCAN HTTP Core Library
+(c) 2007 - 2009 Andres Tarasco  (atarasco_at_gmail.com)
+url: http://www.tarasco.org
+------------------------------------------------------
+*  CHANGELOG:
+------------------------------------------------------
+
+
+
+Release 1.0 beta 10:
+-------------------
+mayor changes:
+- DIGEST: Digest auth was broken in previous releases. bugs were fixed. =)
+- HTTPCORE: The way as connection limits are done have been changed. A single thread can only connect once against a remote host, all the requests will share the same STABLISHED_CONNECTION struct and will be pipelined.
+  This however does not limit multiple threads to create multiple connections against the same host (like for example different HTTP clients/requests requesting the same host thougth a proxy).
+- HTTPCORE: Added support to the HTTP parser for the HTTP response "204 No Content" We were currently expecting for more data.
+- HTTPCORE: Added function CancelHttpRequest() to abort The current HTTP Request/connection.
+- HTTPCORE: Added some modifications to ReadHTTPResponseData() and to the CONNECTION struct to handle timeouts when connecting though an HTTP proxy server.
+
+minor changes:
+- HTTPCORE: There is no sense for the __MULTITHREADING__ compile flag as several threads needs to be running for checking internal tables. This option have been removed so /MT flag must be enabled under visual studio and -lpthread otpion present for gcc.
+- HTTPCORE: Memory leaks fixed.
+- HTTPCORE: Fixed interger underflow when parsing a new chunk-encoded packet of one byte length .
+- HTTPCORE: Improved code (with the help of several profilers )
+
+Release 1.0 beta 9:
+-------------------
+mayor changes:
+- HTTPCORE: data returned from calls to  SendHTTPRequest() are written and mapped to files. This avoids high cpu and memory usage when downloading big files (because of several calls to realloc() ). Also the download speed is increased.
+- GZIP DEFLATE: This module writes the output of the deflated data into a filemapping. The original filemapping is replaced.
+- CHUNK ENCODING: This module writes the output of the chunk data into a filemapping. The original filemapping is replaced.
+
+minor changes:
+- HTTPCORE: Additional headers like "Accept-Encoding: gzip, deflate" are now handled and by the written by their default module.
+- HTTPCORE: Some more code have been documented. Dont expect the full task be finished soon =)
+
+
+Release 1.0 beta 8:
+-------------------
+mayor changes:
+- HTTPCORE: There is a new way to define global configuration options. A new API named SetHTTAPIPConfig() have been included. To set a global option use for example SetHTTPAPIConfig(OPT_HTTP_PROxY,"proxy.mydomain.com);
+- HTTPCORE: There is a new api to retrieve configuration options. Both GetHTTPConfig(handle,option) and GetHTTPAPIConfig(option) have been added.
+- HTTPCORE: Default headers like user-Agent and [Proxy-]Connection are created with SendHTTPRequest(). The user-Agent can be overrided with calls to SetHTTPConfig(handle,OPT_HTTP_USERAGENT,"User-Agent: 
+
+minor changes:
+- HTTPCORE: Fixed bug with HTTP proxy support.
+
+Release 1.0 beta 7:
+-------------------
+mayor changes:
+- HTTPCORE:  There is a new download algoritm. Fscan Core is now able to limit bandwith utilization for each connection and for the whole program. The bandwidth utilization is checked, by default, every 200ms. The Bandwidth option can be set with  SetHTTPConfig(handle,OPT_MAXIMUM_DOWNLOAD_SPEED,value);
+
+
+Release 1.0 beta 6:
+-------------------
+mayor changes:
+HTTPCore: Fixed major bug when handling SSL requests. The Socket was closed when select() returns 0 without checking for buffering ssl data with SSL_pending(). This fix improves speed and stability.
+
+
+Release 1.0 beta 5:
+-------------------
+BUILD: The Fscan HTTP Core is now an independent project, this should be done in the previous v0.7 release however due to several lacks in the structure this wasnt possible in that moment. The Fscan security tool now works by linking the generated  Fscan core library so this oficially forks the Changelog . 
+HTTPCore: Fixed bug in the http headers when setting a 0-length cookie with SetHTTPConfig().
+HTTPCore: Fixed invalid memory access when calling CloseHTTPApiCore()
+
+
+Release 1.0 beta 4:
+--------------------
+- MODULE: Another Callback module for handling data enconding. This module searches for gzip or deflate "content-Encoding" and decodes the buffer. Linked with Zlib v1.2.3 
+- MODULE: For testing purpouses, a new callback module was coded for logging all the HTTP trafic. This callback is only initialized from the PROXY module.
+- webservers: More signatures for webservers.
+- HTTPCORE: Fixed bugs for handling stablished HTTP sessions when a connection with pending io requests is closed.
+- HTTPCORE: Each HTTPHANDLE contains by default several options like a Custom User-Agent header ("User-Agent: Mozilla/5.0 (FSCAN)\r\n") or custom Headers like ("Accept-Encoding: gzip,deflate\r\nConnection: keep-alive\r\n"). This options are sent to the remote webserver by SendHTTPRequest(); The Accept-Encoding option now improve data transfers speed.
+- HTTPCORE: InitHTTPConnectionHandle() is now called only with a few parameters (host, port and SSL required).
+- HTTPCORE: new function SetHTTPConfig() added for changing HTTP parameters (like proxy support, default headers or protocol version).
+
+
+Release 1.0 beta 3:
+-------------------
+- WEBVULNS: If all WebServer resources require Authentication, a bruteforce attack will be performed against the root directory "/".
+- HTTPCORE: Fixed some memory leaks.
+- PROXY: Proxy core integrated. Use WaitForRequests(port) to initialize the engine.
+- HTTPCORE Minor changes to Callback engine. This should allow to create plugins that perform various things like caching, logging, change ports/ips for requests, enable or disable SSL on HTTP hiperlinks...
+- PROXY: Several changes added to the proxy engine to increase speed. In the future asyncronous HTTP requests (IO against client and server) will be implemented.
+
+
+Release 1.0 beta 2:
+-------------------
+- HTTPCORE: Internal changes to the HTTP Core to support Callbacks and to integrate the HTTP Proxy Core engine together. Now both requests and responses share the same struct.
+- HTTPCore: First callback registered  for decoding HTTP Responses with Transfer-Encoding. In the future additional callbacks for loging or decode gzip transfers will be added
+- HTTPCore: Improved core with PIPELINING Support. Multiple threads can request resources against the same HTTP Server and will be procesed in background. The connection pool will also resend pending requests. 
+- HTTPCore: Now An HTTP HANDLE is exclusively binded to a socket. If that socket is not available, another connection is stablished. That binding is required to avoid requests created from different HTTP Proxy threads to be shared (Thats should be a  problem when accesing authenticate resources)
+- HTTPCore: "HTTP/1.1 100 Continue" responses are now handled.
+- HTTPCORE: SendHTTPRequest() can be called with an lpUsername and lpPassword without knowing the authentication type. ( AuthMethod = NO_AUTH ). The function will send and HTTP Request and if authentication is required the request will be resend again.
+- HTTPCore: Added an additional exported function for sending HTTP Requests. SendRawHTTPRequest() can be used when the HTTP Request is generated outside.
+- Webservers: SendRawHTTPRequest() is used to test if the remote webserver is an open HTTP Proxy.
+
+
+Release 1.0 beta 1:
+------------------
+- HTTPCore: Source code restructured (due to fscan core api publishing)
+- HTTPCore: Functions are now better documented with doxygen
+- LOGSETTINGS: Added initial support for csv results (not available in this compilation)
+
+
+Release 1.0 alpha2:
+-------------------
+- HTTPCORE: Fixed HTTPCore overflow when reading negative Content-Length (for example when requesting a webcam streaming url). A new define is also added to HTTP.h
+ #define MAX_DOWNLOAD_DATA 1024*1024.  Change the default value to 0 to be able to download big files with http api core. This limitation have been added to avoid freezing an scan thread.
+- HTTPCORE: Fixed arithmetic error when handling datachunks.
+- HTTPCORE: Fixed bug when handling HEAD requests against HTTP/1.0 servers that was corrupting data responses.
+- LOGSETTINGS: Fixed message log reporting bad url name for webservers.
+- WEBFORMS: Fixed a bug when the auth request send by sendhttprequest() fails. if an auth request fails it is sent only twice (to avoid errors when a webform is not expecting for example a null username).   The maximum number of failure requests is defined at sslscanner.h ( #define RETRY_COUNT     6)
+- Fixed several memory leaks. ( Extensive tests have been done to avoid memory leaks )
+- LOGSETTINGS: Fixed XSS when generating HTTP Logs
+- GLOBAL: Fixed possible buffer overflows. Most insecure calls to strcat/strcpy/sprintf/memcpy have been replaced or extra bound checks have been added to avoid memory corruption.
+- ROUTERAUTH: New feature have been added to support some new routers. This feature allows to force FSCAN to include an update
+ cookie every time an invalid authentication is done. RouterAuth.ini Example:
+	200|EksosM/0.1|/cgi/login?uri=/cgi_u/main|GET|Cookie: !!!UPDATECOOKIE!!!
+- If the "--ports"  flag is not specified, Fscan adds by default the target port 80
+
+
+
+Release 1.0 alpha1:
+-------------------
+- Fscan Console: Working under gnu-linux and win32 systems.
+- Wininet APIs are not used anymore. NTLM and Digest authentication are natively supported . Special thanks goes to Iñaki Lopez for his ntlm library.
+- SendMHTTPRequest() removed as it is not necesary anymore. All HTTP 1.0 and 1.1 requests are natively handled by FSCAN HTTP Core.
+- Some improvements have been made to the HTTP Core library:
+  a) Connection handling have been changed. Now its possible to use more than one connection against remote hosts instead of reusing only one socket.
+  b) HTTP Handles are now binded to a custom connection. This prevents bugs like two threads accesing a remote webserver and only one connection is authenticated. under this context its possible that a thread sends the next connection using the other socket.
+  c) Added HTTP Proxy Support for HTTP core layer.
+- A new HTTP Proxy supporting GET, POST, CONNECT methods have been added. This proxy uses the http core library to handle HTTP Requests and the idea is tu use this small proxy standalone or for automatic payload generation when attacking unknown authentication forms. The proxy Core will be added to the proyect at some point.
+- Authentication Schemes for most routers have been updated: 
+[+] Loaded 40 user/pass combinations
+[+] Loaded 93 Router authentication schemes
+[+] Loaded 98 webform authentication schemes
+[+] Loaded 15 Single Users
+[+] Loaded 15 vulnerabilities
+[+] Loaded 80 Known Webservers
+[+] Loaded 127 Known Routers
+- Added some new checks to detect weird http responses from routers using micro_httpd. This test allows to fingerprint micro_httpd 
+ routers that only answering to an invalid HTTP request with a 400 error message. This routers however are not analyzed.
+- FSCAN GUI for Win32 is now available (compiled with Borland C++ Builder or Codegear RAD Studio). The gui version is stable however 
+ due to some buffer overflows and invalid memory references not yet fixed in the console version, makes this release unusable yet.
+- HTTP Core library source code have been documented (Doxygen format) =)
+
+
+Release 0.9:
+-------------
+- Added a new thread to the HTTP core to purge unused connections every 20 seconds
+- Broken compatibility against other plataforms have been added again. 
+- Main project is compiled by default with visual studio 2005 + openssl 0.9.8g
+- We have reached 7000 lines of code. Now its time to purge unused code ;)
+- Fscan now is able to save HTML reports. Thanks to Gandalfj for the html template.
+- Console version reports now dumps the following tags:
+	* FPRINT: Prints All fingerprint signatures. (only shown with the --showallhosts tag)
+	* ROUTER: Prints information for a device
+	* WEBSRV: Prints information for a webserver
+	* RTPASS: Prints information for a gathered username/password for the router/device 
+	* RUPASS: Prints information for a router/device with unknown password
+	* RNPASS: Prints information for a router/device without password (or with unknown authentication schema for fscan). Please note that if the router authenticate itself against HTTPS and you are only scanning HTTP this signature will also appear.
+	* WEBVUL: Prints information for a web vulnerability (username and password will also be reported if found when a 401 error code is returned)
+- Until now, the routerauth.ini schema doesn´t allow to add custom headers to the http request. You can now send limited date (cookies). This feature have been added 
+        200|Allegro-Software-RomPager/4.30b3|/html/Hmain.html|GET|Cookie: RpWebID=
+- to avoid compatibility problems, new functions for handling critical sections under win32/linux have been added. 
+
+
+Release 0.8:
+------------
+- After serveral overflows with chunk encoding  we finally ended the support for HTTP/1.1 implementation. (Pipeling is not supported by default) 
+- New code for handling persistent connections have been added.
+- Old source code was caotic, so the application engine have been redesigned a bit. There are still lots of lines to modify but our main goal is to release a working version (private).
+- There is a new feature called "Webservers" with a generic vulnerability database for non routers. Wikto signatures will be added here at some point. There are some magic homemade signatures =)
+- authentication can now be also handled for webservers when a resource returns a 401 error code
+- Another fingerprint database have been added to identify known webservers and known devices/routers (only based on server header)
+- Fixed  a 1byte bug overflow  when reading an http stream
+- HTTP response is now moved into two different buffers, one for server headers and one for raw data.
+- As always, reviewed signatures
+- Handling webresponses isnt easy, Some simple checks have been added for return codes 302,401,403 to avoid false positives.
+- Authentication responses can be handled by wininet when no basic auth is allowed. This feature allows us to bruteforce digest or NTLM authentication under Win32 (Note that this authentication is a bit slower)
+- Location Header is now checked once when the default page does not require authentication.
+- Added support for vhosts. Now you can specify the --vhost switch when analyzing one system and also HTTP requests are able to handle vhosts when a location header is found.
+- Added a new security check to avoid large data streams to lock fscan. This feature is needed when auditing servers that returns video/music/misc streams. By this way, you can Set a Maximum Download Data size for request. if reached, the connection will be closed.
+- HTTP CORE have been redesigned and works now as an external library.
+
+Release 0.7a:
+-------------
+- Protocol will automatically switch to HTTP/1.1 if the server returns error 505 wich was detected in some router models. Default is HTTP/1.0 (Not a "real" HTTP/1.1 protocol)
+- Fixed bug in IschallengeSupported() that sometimes ignores valid authentication schemes
+- Added some new debug signatures (need feedback)
+- Added new tag !!!RAWTIME!!! for authentication. Needed with some globalVirata Routers ( javascript code:  var d = new Date(); fm.time.value = d.getTime().toString().substring(4,13);)
+- Changed default connect timeouts (8 seconds for connect and 6 seconds for read data)
+- Changed MAX_RETRY_VALUE to 10. If the connection becomes reset or returns no data, the HTTP request is only send twice , until retries<= MAX_RETRY_VALUE. If the data returned is still null only that request will be ignored instead of returning user/pass not found. This helps to avoid weird HTTP responses from servers when a required parameter is not send (for example null username or password). 
+- Added additional tag for webforms named "AdditionalHeader=". Needed for adding static cookies.
+- Added !!!RAWPORT!!! tag for handling some HTTP Requests
+  Example of custom Header:
+  
+  Model=DEBUG **TEST THIS SCHEME** Virata-EmWeb/R6_0_1
+  status=200
+  server=Virata-EmWeb/R6_0_1
+  Matchstring=<FORM method="POST" name="login" autocomplete="off" onsubmit="return checkIt();" ACTION="/index.html">   
+  ValidateImage=/images/logon.gif
+  authurl=/index.html
+  authmethod=POST
+  authform=admin_id=&admin_pw=&time=!!!RAWTIME!!!&un=!!!B64USER!!!&pw=!!!B64PASS!!!
+  requireloginandpass=1
+  validauthstring=
+  invalidauthstring=<HEAD><TITLE>Moved</TITLE></HEAD><BODY><A HREF="http://!!!RAWIPAD!!!/">Moved</A></BODY>
+  invalidauthstringalt=<HEAD><TITLE>Moved</TITLE></HEAD><BODY><A HREF="http://0.0.0.0/">Moved</A></BODY>
+  AdditionalHeader=Cookie: has_cookie=1
+
+
+Release 0.61:
+-------------
+- We have now two user files for authentication, i have added some more user/pass combinations for the full version. Most times you wont find anything but, who cares? :)
+- fixed debug messages out of the #define _DBG section
+
+Release 0.6:
+------------
+- Fixed some bad signatures that were reporting false positives
+- Added tag "ValidateImage=" to Webforms.ini to perform aditional fingerprinting . Example ValidateImage=/Images/dell_logo.gif
+  This additional signature is needed when the default signature isnt able to match an uniq router model (for example a blank / webpage with a location header)
+- Fixed bug in CheckWebformAuth that reports wrong http banners
+- Fixed some memory serious leaks (reported more than 1Gb of ram used with previous versions of fscan)
+- Changed parameter handling.
+
+Usage: fscan.exe  <parameters>
+  --threads <threads>                   (Number of threds.  default 10)
+  --timeout <timeout>                   (Connection Timeout. default 10)
+  --logfile <logfile>                   (Save results to <logfile>)
+  --ipfile  <ipfile>                    (load ips from <ipfile>)
+  --hosts   <ip1[-ip2]>                 (ex: --hosts 192.168.1.1-192.168.10.1)
+  --bruteforce   <0|1>                  (Bruteforce (enabled by default) )
+  --fulluserlist <0|1>                  (Test all users (slowest)
+  --ports <port>[,<port>,<port>,..]     (example -p 80,81,82,8080)
+
+ Example:
+ fscan.exe --ports 80,81 --hosts 192.168.0.1-192.168.1.254  --threads 200
+
+- parameter '--hosts' now supports single IP address. Example: fscan --ports 80 --hosts 192.168.1.1
+- Fixed LoadUserListSingle() bug
+- Feature: When trying BasicAuth authentication with a web that returns the following header: "Server: " use an space in RouterAuth.ini to match that router. Example:
+  200| |/cgi-bin/webcm|POST|nextpage=../html/indextop.htm (Needed for routers like NetGEAR ADSL Modem DG632)a
+- added parameter --fulluserlist. By default only 26 user/passswords combinations are checked. Use -Fulluserlist to perform a complete analysis (slower)
+- As allways, more signatures have been added:
+  [+] Loaded 105 user/pass combinations
+  [+] Loaded 42 ignored webservers
+  [+] Loaded 42 Router authentication schemes
+  [+] Loaded 51 webform authentication schemes
+  [+] Loaded 13 Single Users
+
+Release 0.5:
+-------------
+- Some new tags have been added: 
+  !!!RAWIPAD!!! (ip address string. Example: "This document has moved to a new <a href="http://!!!RAWIPAD!!!/redirect.asp">location</a>."
+- The webform authentication scheme now supports Tags in Matchstring, authform, validauthstring, invalidauthstring and invalidauthstringalt. This is useful for example when matching responses.
+- Fixed some bugs when parsing "WWW-Authenticate" Header
+- Fixed bug with inet_ntoa() returning 0.0.0.0 for Server headers to avoid false negatives.
+- Fixed bug in CheckBasicAuth() when returning authentication information when parsing Location header. If two threads found webservers with a Location header at the same time, the returned information is incorrect.
+- more routers supported:
+  [+] Loaded 28 Router authentication schemes
+  [+] Loaded 30 webform authentication schemes
+- Openssl support is now optional. add #define _OPENSSL_SUPPORT_ to sslscanner.h if you need ssl support. (disabled by default)
+- Added compatibility with both Borland c++ builder and Microsoft Visual studio 6 compilers
+- Added compatibility with Gcc under Linux.
+ at4r@enterprise:~/fscan$ g++ -lpthread  sslscanner.cpp sockets.cpp webforms.cpp config.cpp BasicAuth.cpp base64.cpp md5.cpp -o fscan
+
+
+Release 0.41:
+--------------
+- Added more signatures
+[+] Loaded 24 Router authentication schemes
+[+] Loaded 20 webform authentication schemes
+
+
+Release v0.4 (20070726)
+------------------------
+- When trying Basic, ignore results that returns errorcode 400 (very anonying bug with some routers)
+- HTTP server header is checked first with a GET request, next with a HEAD request, and one more time if password is guesed. This allows to gather the server banner when is hiddent for unauthorized querys
+- Added additional flag -f <file> to analyze hosts from a txt file. Also is able to parse logs from previous versions (with an space at the first character)
+- Fixed several buffer overflows. Sorry but no code optimization this time
+- Changed all requests to HTTP/1.0. Also added several HTTP headers
+- Lots of new fingerprints
+[+] Loaded 92 user/pass combinations
+[+] Loaded 29 ignored webservers
+[+] Loaded 21 Router authentication schemes
+[+] Loaded 16 webform authentication schemes
+[+] Loaded 12 Single Users
+
+Release v0.3 (20070725):
+-------------------------
+- Added support for Location Header
+- Fixed bug when requesting basic authorization with empty user and password
+- Fixed bug when basic authorization returns error codes 413 or 403
+- Added support for new webform fingerprinting data. Invalidauthstringalt is used when we need to check if there is need to validate two invalid strings.
+- Updated configuration files for webforms and routers authentication 
+- Added some more servers for the ignore list
+- improved loadconfig functions
+- fixed weird bugs when authenticating against "Speed Touch WebServer"
+
